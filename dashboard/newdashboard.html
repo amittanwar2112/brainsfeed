@@ -12,10 +12,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="front-end_data.json"></script>     
+<script type="text/javascript" src="front-end_data.json"></script>   
+
 	
         <!-- Core plugin JavaScript-->
-
+<style>
+      
+			/* Set the size of the div element that contains the map */
+		   #map {
+			 height: 400px;  /* The height is 400 pixels */
+			 width: 100%;  /* The width is the width of the web page */
+			}
+		 
+</style>
 <script>
 
 var mydata = data;	
@@ -60,9 +69,36 @@ let x="";
 	let str = "go to website";
    let result = str.link(weblink[k]);
   document.getElementById("goto").innerHTML = result; 
-  document.getElementById("hide").style.visibility = "hidden";
-  document.getElementById("hide1").style.visibility = "hidden";
+  document.getElementById("hide").style.display = "none";
+  document.getElementById("hide1").style.display = "none";
+  document.getElementById("hide2").style.display = "none";
   document.getElementById("btn").style.visibility = "visible";
+  
+
+  // The location of Uluru
+  //var uluru = {lat: 31.3534, lng: 75.4587};
+  var geocoder = new google.maps.Geocoder();
+  // The map, centered at Uluru
+
+  // The marker, positioned at Uluru
+  
+  var addres = address[k];
+
+geocoder.geocode( { 'address': addres}, function(results, status) {
+
+  if (status == google.maps.GeocoderStatus.OK) {
+    var latitude = results[0].geometry.location.lat();
+    var longitude = results[0].geometry.location.lng();
+   console.log(latitude);
+   console.log(longitude);
+   var uluru = {lat: latitude, lng: longitude};
+   var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 5, center: uluru});
+   var marker = new google.maps.Marker({position: uluru, map: map});
+
+  } 
+});
+ 
 
 	//document.getElementById('goto').innerHTML = "<a href="weblink[k]">"+Go To+"</a>";   
 }
@@ -170,7 +206,7 @@ for( idx in companyname) {
 
 <button type="button" class="btn btn-info" id="moreinfo"style="margin:10px;">More Info</button>
 
-<div class="row" id="hide1" style="visibility:hidden">	
+<div class="row" id="hide1" style="display:none">	
 	<div class="col-sm-12 header_margin" >		
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
 			<div class="card-body" style="text-align:center;font-weight: bolder;" >Long Discription</div>
@@ -178,8 +214,8 @@ for( idx in companyname) {
 		</div>	
 	</div>
 </div>
-<div class="row" id="hide" style="visibility:hidden">	
-	<div class="col-sm-6 header_margin" >		
+<div class="row" >	
+	<div class="col-sm-6 header_margin" id="hide" style="display:none">		
 		<div class="card"  style="width: 100%;margin:10px; background-color: azure;">
 			<div class="card-body"  style="text-align:center;font-weight: bolder;" >Price</div>
 			<p id="pri" style="text-align:center"></p>
@@ -197,7 +233,7 @@ for( idx in companyname) {
 			<p id="typ" style="text-align:center"></p>
 		</div>
 	</div>	
-	<div class="col-sm-6 header_margin" >
+	<div class="col-sm-6 header_margin"  id="hide2" style="display:none">
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
 			<div class="card-body" style="text-align:center;font-weight: bolder;" >rating</div>
 			<p id="rat" style="text-align:center"></p>
@@ -217,28 +253,37 @@ for( idx in companyname) {
 	</div>	
 </div>
 
+<div id="map" style="min-height:100%;" ></div>
+
 
   
 <script>
 
  jQuery("#moreinfo").click(function(e){
 	 console.log("in button")
-	document.getElementById("hide").style.visibility = "visible";
-	document.getElementById("hide1").style.visibility = "visible";
+	document.getElementById("hide").style.display = "block";
+	document.getElementById("hide1").style.display = "block";
+	document.getElementById("hide2").style.display = "inline";
  });
 
 
 $(document).ready(function() {
 
 	populateCompanyData(mydata);
+	document.getElementById("hide").style.display = "none";
+	document.getElementById("hide1").style.display = "none";
+	document.getElementById("hide2").style.display = "none";
 } );
 
-   
- $('#mydate').change( function() {
+     
 
-});  
+
+
 
 </script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXYpREyNuE-iSCo3lsntK0BCFoOE3C8II&callback=initMap">
+</script>
 
-    </body>
+</body>
 </html>
