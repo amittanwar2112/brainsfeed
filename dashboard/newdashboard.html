@@ -47,7 +47,7 @@ let x="";
 	}
 	document.getElementById('spec').innerHTML = x; 
 	document.getElementById('logo').innerHTML = '<img src="'+logolink[k]+'" style="width:90px;float:right;height:90px;padding-bottom:30px"/>';  
-	document.getElementById('scr').innerHTML = '<img src="'+screenshotlink[k]+'" style="width:45vw;"/>';  
+	document.getElementById('scr').innerHTML = '<img src="'+screenshotlink[k]+'" style="width:100%;height:100vh"/>';  
 	document.getElementById('lon').innerHTML = "<p>"+longdisc[k]+"</p>"; 
 	document.getElementById('pri').innerHTML = "<p>"+price[k]+"</p>"; 
 	document.getElementById('lin').innerHTML = "<p>"+weblink[k]+"</p>"; 
@@ -62,6 +62,7 @@ let x="";
   document.getElementById("goto").innerHTML = result; 
   document.getElementById("hide").style.visibility = "hidden";
   document.getElementById("hide1").style.visibility = "hidden";
+  document.getElementById("btn").style.visibility = "visible";
 
 	//document.getElementById('goto').innerHTML = "<a href="weblink[k]">"+Go To+"</a>";   
 }
@@ -125,63 +126,54 @@ for( idx in companyname) {
              
 	        </nav>
         <!-- these container contain inverter selection date selection -->
- 
 
-		<div class="container-fluid" >
-            <div class="row">
-                <!-- inverter -->
-                <div class="col-sm-4 header_margin" style="background-color:lavender;height: 80px">
-
-		                <!-- inverter selection -->
-	  	              <div class="dropdown" style="padding:20px;">
-			                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="font-size:20px" id="company_select">Company Name
-			                      <span class="caret"></span></button>
-			                  <ul class="dropdown-menu" id="inverter" >
-				                    
-			                  </ul>
-						</div>
-
+			<div class="card">
+				<div class="card-body"  style="background-color:lavender;display: inline;">
+					<div class="dropdown" style="padding:10px;display: inline;">
+						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="font-size:20px" id="company_select">Company Name
+							<span class="caret"></span></button>
+						<ul class="dropdown-menu" id="inverter" >
+							  
+						</ul>
 				  </div>
-				  
-				  <div class="col-sm-4" style="background-color:lavender;height: 80px;text-align:right">
-					<button type="button" class="btn btn-success" style="margin:10px;background-color:blanchedalmond;">
-						<p id="goto" ></p>
-					</button>
-	              </div>
+				  <button type="button" id="btn"class="btn btn-success" style="margin:10px;background-color:blanchedalmond;visibility: hidden;display: inline;">
+					<p id="goto" ></p>
+				  </button>
+				  <div class="card-body" id="logo" style="display: inline;" ></div>
+
+				</div>
+			  </div>
+	
 
 
-	              <div class="col-sm-4" style="background-color:lavender;height: 80px;text-align:right">
-					
-					<div class="card-body" id="logo" ></div>
-	              </div>
-
-            </div>
-		</div>
 <div class="row">	
 	<div class="col-sm-6 header_margin" >		
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center" >Title</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;" >Title</div>
 			<p id="tit" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center">Short Discription</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;">Short Discription</div>
 			<p  id="dis" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center">Specality</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;">Specality</div>
 			<p id="spec" style="text-align:center"></p>
 		</div>
 
-		<button type="button" class="btn btn-info" id="moreinfo"style="margin:10px;">More Info</button>
+		
 	</div>	
 	<div class="col-sm-6 header_margin" >
 		<div class="card-body" id="scr" ></div>
 	</div>	
 </div>
+
+<button type="button" class="btn btn-info" id="moreinfo"style="margin:10px;">More Info</button>
+
 <div class="row" id="hide1" style="visibility:hidden">	
 	<div class="col-sm-12 header_margin" >		
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center;" >Long Discription</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;" >Long Discription</div>
 			<p id="lon" ></p>
 		</div>	
 	</div>
@@ -189,37 +181,37 @@ for( idx in companyname) {
 <div class="row" id="hide" style="visibility:hidden">	
 	<div class="col-sm-6 header_margin" >		
 		<div class="card"  style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center;" >Price</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;" >Price</div>
 			<p id="pri" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center;">Web Link</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;">Web Link</div>
 			<p  id="lin" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center;">Size</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;">Size</div>
 			<p id="size" style="text-align:center"></p>
 		</div>
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center;">Type</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;">Type</div>
 			<p id="typ" style="text-align:center"></p>
 		</div>
 	</div>	
 	<div class="col-sm-6 header_margin" >
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center;" >rating</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;" >rating</div>
 			<p id="rat" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body" style="text-align:center;">Address</div>
+			<div class="card-body" style="text-align:center;font-weight: bolder;">Address</div>
 			<p  id="add" style="text-align:center"></p>
 		</div>	
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center;">datapoints</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;">datapoints</div>
 			<p id="dp" style="text-align:center;"></p>
 		</div>
 		<div class="card" style="width: 100%;margin:10px; background-color: azure;">
-			<div class="card-body"  style="text-align:center">Industry</div>
+			<div class="card-body"  style="text-align:center;font-weight: bolder;">Industry</div>
 			<p id="ind" style="text-align:center"></p>
 		</div>
 	</div>	
